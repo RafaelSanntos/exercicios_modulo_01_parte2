@@ -1,6 +1,5 @@
 const prompt = require('prompt-sync')();
 
-// Função para ler o nome de uma pessoa
 function lerNome() {
     let nome = prompt("Digite o nome da pessoa: ");
     // Verifica se o nome contém apenas letras
@@ -12,7 +11,6 @@ function lerNome() {
     return nome;
 }
 
-// Função para ler a idade de uma pessoa
 function lerIdade() {
     let idade = prompt("Digite a idade da pessoa: ");
     // Verifica se a idade contém apenas números
@@ -24,7 +22,6 @@ function lerIdade() {
     return parseInt(idade);
 }
 
-// Função principal para ler os dados das pessoas
 function lerDadosPessoas() {
     let nomes = [];
     let idades = [];
@@ -39,7 +36,6 @@ function lerDadosPessoas() {
     return { nomes, idades };
 }
 
-// Função para mostrar as pessoas menores de idade
 function mostrarMenoresDeIdade(nomes, idades) {
     console.clear();
     console.log("Pessoas menores de idade:\n");
@@ -50,6 +46,6 @@ function mostrarMenoresDeIdade(nomes, idades) {
     }
 }
 
-// Execução do programa
+// Chamando função
 let dados = lerDadosPessoas();
 mostrarMenoresDeIdade(dados.nomes, dados.idades);
