@@ -12,7 +12,6 @@ function criarMatriz() {
 
 function calcularSomasColunas(matriz) {
     let somasColunas = new Array(20).fill(0);
-
     for (let j = 0; j < 20; j++) { // percorre cada coluna
         for (let i = 0; i < 15; i++) { // percorre cada linha da coluna j
             somasColunas[j] += matriz[i][j];
@@ -22,8 +21,19 @@ function calcularSomasColunas(matriz) {
     return somasColunas;
 }
 
+function exibirMatriz(matriz) {
+    console.log("Matriz 15x20:");
+    for (let i = 0; i < 15; i++) {
+        let linha = "";
+        for (let j = 0; j < 20; j++) {
+            linha += matriz[i][j].toFixed(2) + "\t";
+        }
+        console.log(linha);
+    }
+}
+
 function exibirSomasColunas(somasColunas) {
-    console.log("Somas de cada coluna:");
+    console.log("\nSomas de cada coluna:");
     for (let j = 0; j < 20; j++) {
         console.log(`Coluna ${j + 1}: ${somasColunas[j].toFixed(2)}`);
     }
@@ -32,8 +42,10 @@ function exibirSomasColunas(somasColunas) {
 function main() {
     let matriz = criarMatriz();
     let somasColunas = calcularSomasColunas(matriz);
+    
+    exibirMatriz(matriz);
     exibirSomasColunas(somasColunas);
 }
 
-// Chamando a função principal
+// Chamando função principal
 main();
