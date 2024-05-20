@@ -11,30 +11,20 @@ function lerMatriz(tamanho) {
     return matriz;
 }
 
-function somaLinha(matriz, linhaIndex) {
-    return matriz[linhaIndex].reduce((acc, val) => acc + val, 0);
-}
-
-function somaColuna(matriz, colunaIndex) {
+function somaAcimaDiagonalPrincipal(matriz) {
     let soma = 0;
     for (let i = 0; i < matriz.length; i++) {
-        soma += matriz[i][colunaIndex];
+        for (let j = i + 1; j < matriz[i].length; j++) {
+            soma += matriz[i][j];
+        }
     }
     return soma;
 }
 
-function somaDiagonalPrincipal(matriz) {
+function somaAbaixoDiagonalPrincipal(matriz) {
     let soma = 0;
-    for (let i = 0; i < matriz.length; i++) {
-        soma += matriz[i][i];
-    }
-    return soma;
-}
-
-function somaTodosElementos(matriz) {
-    let soma = 0;
-    for (let i = 0; i < matriz.length; i++) {
-        for (let j = 0; j < matriz[i].length; j++) {
+    for (let i = 1; i < matriz.length; i++) {
+        for (let j = 0; j < i; j++) {
             soma += matriz[i][j];
         }
     }
@@ -50,31 +40,21 @@ function imprimirMatriz(matriz, nome) {
 }
 
 function calcularESomarMatriz() {
-    // Definindo o tamanho da matriz
-    const tamanho = 5;
-
-    // Lendo a matriz M
+    const tamanho = 10;
     const matrizM = lerMatriz(tamanho);
 
-    // Imprimindo a matriz M gerada
     imprimirMatriz(matrizM, 'Matriz M');
 
-    // Calculando as somas
-    const somaLinha4 = somaLinha(matrizM, 3); // Índice 3 corresponde à linha 4
-    const somaColuna2 = somaColuna(matrizM, 1); // Índice 1 corresponde à coluna 2
-    const somaDiagPrincipal = somaDiagonalPrincipal(matrizM);
-    const somaTodosElem = somaTodosElementos(matrizM);
+    const somaAcimaDiag = somaAcimaDiagonalPrincipal(matrizM);
+    const somaAbaixoDiag = somaAbaixoDiagonalPrincipal(matrizM);
 
-    // Exibindo os resultados
-    exibirResultados(somaLinha4, somaColuna2, somaDiagPrincipal, somaTodosElem);
+    exibirResultados(somaAcimaDiag, somaAbaixoDiag);
 }
 
-function exibirResultados(somaLinha4, somaColuna2, somaDiagPrincipal, somaTodosElem) {
-    console.log(`Soma da linha 4: ${somaLinha4}`);
-    console.log(`Soma da coluna 2: ${somaColuna2}`);
-    console.log(`Soma da diagonal principal: ${somaDiagPrincipal}`);
-    console.log(`Soma de todos os elementos: ${somaTodosElem}`);
+function exibirResultados(somaAcimaDiag, somaAbaixoDiag) {
+    console.log(`Soma dos elementos acima da diagonal principal: ${somaAcimaDiag}`);
+    console.log(`Soma dos elementos abaixo da diagonal principal: ${somaAbaixoDiag}`);
 }
 
-// Chamando a função principal para executar o algoritmo
+// Chamando a função 
 calcularESomarMatriz();
