@@ -28,5 +28,15 @@ module.exports = {
                 texto = prompt(mensagem);
             }
         }
+    },
+
+    validarAvaliacao: function(mensagem) {
+        let avaliacao = Number(prompt(mensagem));
+        while (avaliacao < 0 || avaliacao > 10 || isNaN(avaliacao)) {
+            console.clear();
+            console.log("Digite somente números de 0 a 10");
+            avaliacao = Number(prompt(mensagem));
+        }
+        return avaliacao;
     }
 }

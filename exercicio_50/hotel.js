@@ -38,8 +38,8 @@ const hotel = {
             quartosTotais: quartosTotais,
             quartosDisponiveis: quartosDisponiveis
         };
-        this.hoteis.push(novoHotel);
-        console.log(`\nInformações do Hotel ${nomeHotel} adicionado com sucesso!`);
+        this.hoteis.push(novoHotel); // this faz referencia ao objeto hotel
+        console.log(`Informações do Hotel ${nomeHotel} adicionado com sucesso! O ID é ${idHotel}.`);
         ultimoIdHotel = idHotel; // Atualiza o último ID de hotel usado
         return true;
     },
@@ -54,7 +54,17 @@ const hotel = {
             adicionadoComSucesso = hotel.adicionarHotel(dadosHotel.idHotel, dadosHotel.nomeHotel, dadosHotel.cidadeHotel, dadosHotel.quartosTotais, dadosHotel.quartosDisponiveis);
         }
         submenuAdicionarHotel.call(this);
-    }
+    },
+
+    buscarHoteisPorCidade: function(cidade) {
+        const hoteisNaCidade = this.hoteis.filter(hotel => hotel.cidade === cidade);
+        if (hoteisNaCidade.length === 0) {
+            console.log('Nenhum hotel encontrado nesta cidade.');
+            return;
+        }
+        console.log(`Hoteis em ${cidade}:`);
+        hoteisNaCidade.forEach(hotel => console.log(hotel.nome));
+    }    
 }
 
 module.exports = hotel;
